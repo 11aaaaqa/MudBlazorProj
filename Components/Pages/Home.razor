@@ -1,28 +1,94 @@
 ﻿@page "/"
 
-<MudContainer Class="page-container">
-    <MudContainer Class="input-container">
-        <MudInput T="int?" Placeholder="0" Class="input"></MudInput>
-        <MudButton Class="modal-btn">Кнопка</MudButton>
+<MudContainer Class="items-container">
+    <MudText Class="title">Popular</MudText>
+    <MudContainer Class="item">
+        <MudImage Src="img/BTC(BTC).svg" Alt="BTC"></MudImage>
+        <MudText Class="short-name btc">BTC</MudText>
+        <MudText Class="name">Bitcoin</MudText>
+        <MudText Class="network">NATIVE</MudText>
+    </MudContainer>
+    <MudContainer Class="item">
+        <MudImage Src="img/USDT(TRC20).svg" Alt="USDT"></MudImage>
+        <MudText Class="short-name usdt">USDT</MudText>
+        <MudText Class="name">Tether</MudText>
+        <MudText Class="network">TRC20</MudText>
+    </MudContainer>
+    <MudContainer Class="item">
+        <MudImage Src="img/ETH(ERC20).svg" Alt="ETH"></MudImage>
+        <MudText Class="short-name eth">ETH</MudText>
+        <MudText Class="name">Ethereum</MudText>
+        <MudText Class="network">ERC20</MudText>
+    </MudContainer>
+    <MudContainer Class="item">
+        <MudImage Src="img/XMR(XMR).svg" Alt="XMR"></MudImage>
+        <MudText Class="short-name xmr">XMR</MudText>
+        <MudText Class="name">Monero</MudText>
+        <MudText Class="network">XMR</MudText>
+    </MudContainer>
+    <MudContainer Class="item">
+        <MudImage Src="img/BNB(BEP20).svg" Alt="BNB"></MudImage>
+        <MudText Class="short-name bnb">BNB</MudText>
+        <MudText Class="name">Binance Coin</MudText>
+        <MudText Class="network">BEP20</MudText>
     </MudContainer>
 </MudContainer>
 
 <style>
-    .page-container {
-        text-align: center;
-        margin-top: 50px;
+    .items-container {
+        width: 500px;
+        background: black;
+        margin-top: 20px;
+        padding: 10px;
     }
 
-    .input-container {
-        
-        justify-content: space-between;
+    .title {
+        padding: 10px 0;
+        color: rgba(255,255,255, 0.7);
     }
 
-    .input {
-        width: 200px;
+    .item {
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
+        display: flex;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
     }
 
-    .modal-btn {
-        
+    .short-name {
+        margin: 7px;
+        font-size: 10.6px;
+        color: white;
+        border-radius: 4px;
+        padding: 1px 3px;
+    }
+
+    .network {
+        margin-left: auto;
+        color: rgba(255,255,255, 0.7)
+    }
+
+    .btc {
+        background-color: orange;
+    }
+
+    .usdt {
+        background-color: rgba(0, 190, 175, 1);
+    }
+
+    .eth {
+        background-color: rgba(0, 122, 255, 1);
+    }
+
+    .xmr {
+        background-color: darkorange;
+    }
+
+    .bnb {
+        background-color: rgba(255, 185, 24, 1);
+    }
+
+    .name {
+        color: rgba(255,255,255, 0.7);
     }
 </style>
