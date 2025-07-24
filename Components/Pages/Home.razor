@@ -1,45 +1,160 @@
 ﻿@page "/"
 
-<MudContainer Class="items-container">
-    <MudText Class="title">Popular</MudText>
-    <MudContainer Class="item">
-        <MudImage Src="img/BTC(BTC).svg" Alt="BTC"></MudImage>
-        <MudText Class="short-name btc">BTC</MudText>
-        <MudText Class="name">Bitcoin</MudText>
-        <MudText Class="network">NATIVE</MudText>
-    </MudContainer>
-    <MudContainer Class="item">
-        <MudImage Src="img/USDT(TRC20).svg" Alt="USDT"></MudImage>
-        <MudText Class="short-name usdt">USDT</MudText>
-        <MudText Class="name">Tether</MudText>
-        <MudText Class="network">TRC20</MudText>
-    </MudContainer>
-    <MudContainer Class="item">
-        <MudImage Src="img/ETH(ERC20).svg" Alt="ETH"></MudImage>
-        <MudText Class="short-name eth">ETH</MudText>
-        <MudText Class="name">Ethereum</MudText>
-        <MudText Class="network">ERC20</MudText>
-    </MudContainer>
-    <MudContainer Class="item">
-        <MudImage Src="img/XMR(XMR).svg" Alt="XMR"></MudImage>
-        <MudText Class="short-name xmr">XMR</MudText>
-        <MudText Class="name">Monero</MudText>
-        <MudText Class="network">XMR</MudText>
-    </MudContainer>
-    <MudContainer Class="item">
-        <MudImage Src="img/BNB(BEP20).svg" Alt="BNB"></MudImage>
-        <MudText Class="short-name bnb">BNB</MudText>
-        <MudText Class="name">Binance Coin</MudText>
-        <MudText Class="network">BEP20</MudText>
+<MudContainer Class="page-container">
+    <MudContainer Class="wrapper">
+        <MudInput T="int?" Placeholder="0" Class="input"></MudInput>
+        <MudButton Class="open-modal-btn" OnClick="OpenModal" Ripple="false">
+            @switch (chosenCrypto)
+            {
+                case ChosenCrypto.None:
+                    <AdornmentContent Style="position: relative; top: 5px;">
+                        <MudText>&#x25BC;</MudText>
+                    </AdornmentContent> 
+                    break;
+                case ChosenCrypto.Bitcoin:
+                    <AdornmentContent Class="adornment">  
+                        <MudImage Src="img/BTC(BTC).svg" Alt="BTC" />
+                        <MudText Style="color: white; margin-left: 3px;">BTC</MudText>
+                    </AdornmentContent> 
+                    break;
+                case ChosenCrypto.USDT:
+                    <AdornmentContent Class="adornment">
+                        <MudImage Src="img/USDT(TRC20).svg" Alt="USDT"></MudImage>
+                        <MudText Style="color: white; margin-left: 3px;">USDT</MudText>
+                    </AdornmentContent>  
+                    break;
+                case ChosenCrypto.Ethereum:
+                    <AdornmentContent Class="adornment">
+                        <MudImage Src="img/ETH(ERC20).svg" Alt="ETH"></MudImage>
+                        <MudText Style="color: white; margin-left: 3px;">ETH</MudText>
+                    </AdornmentContent>  
+                    break;
+                case ChosenCrypto.Monero:
+                    <AdornmentContent Class="adornment">
+                        <MudImage Src="img/XMR(XMR).svg" Alt="XMR"></MudImage>
+                        <MudText Style="color: white; margin-left: 3px;">XMR</MudText>
+                    </AdornmentContent>  
+                    break;
+                case ChosenCrypto.BNB:
+                    <AdornmentContent Class="adornment">
+                        <MudImage Src="img/BNB(BEP20).svg" Alt="BNB"></MudImage>
+                        <MudText Style="color: white; margin-left: 3px;">BNB</MudText>
+                    </AdornmentContent>  
+                    break;
+            }
+        </MudButton>
+
+        @if (showModal)
+        {
+            <MudContainer Class="items-container">
+                <MudText Class="title">Popular</MudText>
+
+                <MudButton OnClick="() => ChooseCrypto(ChosenCrypto.Bitcoin)" Class="item">
+                    <MudImage Src="img/BTC(BTC).svg" Alt="BTC"></MudImage>
+                    <MudText Class="short-name btc">BTC</MudText>
+                    <MudText Class="name">Bitcoin</MudText>
+                    <MudText Class="network">NATIVE</MudText>
+                </MudButton>
+                
+                <MudButton OnClick="() => ChooseCrypto(ChosenCrypto.USDT)" Class="item">
+                    <MudImage Src="img/USDT(TRC20).svg" Alt="USDT"></MudImage>
+                    <MudText Class="short-name usdt">USDT</MudText>
+                    <MudText Class="name">Tether</MudText>
+                    <MudText Class="network">TRC20</MudText>
+                </MudButton>
+                
+                <MudButton OnClick="() => ChooseCrypto(ChosenCrypto.Ethereum)" Class="item">
+                    <MudImage Src="img/ETH(ERC20).svg" Alt="ETH"></MudImage>
+                    <MudText Class="short-name eth">ETH</MudText>
+                    <MudText Class="name">Ethereum</MudText>
+                    <MudText Class="network">ERC20</MudText>
+                </MudButton>
+                
+                <MudButton OnClick="() => ChooseCrypto(ChosenCrypto.Monero)" Class="item">
+                    <MudImage Src="img/XMR(XMR).svg" Alt="XMR"></MudImage>
+                    <MudText Class="short-name xmr">XMR</MudText>
+                    <MudText Class="name">Monero</MudText>
+                    <MudText Class="network">XMR</MudText>
+                </MudButton>
+                
+                <MudButton OnClick="() => ChooseCrypto(ChosenCrypto.BNB)" Class="item">
+                    <MudImage Src="img/BNB(BEP20).svg" Alt="BNB"></MudImage>
+                    <MudText Class="short-name bnb">BNB</MudText>
+                    <MudText Class="name">Binance Coin</MudText>
+                    <MudText Class="network">BEP20</MudText>
+                </MudButton>
+            </MudContainer>
+        }
     </MudContainer>
 </MudContainer>
 
+@code{
+    enum ChosenCrypto
+    {
+        None,
+        Bitcoin,
+        USDT,
+        Ethereum,
+        Monero,
+        BNB
+    }
+
+    ChosenCrypto chosenCrypto = ChosenCrypto.None;
+    bool showModal = false;
+
+    void OpenModal()
+    {
+        showModal = !showModal;
+    }
+
+    void ChooseCrypto(ChosenCrypto chosenCrypto)
+    {
+        this.chosenCrypto = chosenCrypto;
+        showModal = false;
+    }
+}
+
 <style>
-    .items-container {
+    .adornment {
+        display:flex;
+        align-items: center;
+        margin-right: 45px;
+    }
+
+    .chosen-crypto-container {
+        display: flex;
+    }
+
+    .page-container {
         width: 500px;
         background: black;
         margin-top: 20px;
         padding: 10px;
+    }
+
+    .wrapper {
+        position: relative;
+        width: 100%;
+    }
+
+    .input {
+        padding: 5px 70px 5px 0;
+        width: 100%;
+        color: white;
+        box-sizing: border-box;
+    }
+
+    .open-modal-btn {
+        position: absolute;
+        right: 0;
+        width: 30px;
+        border: none;
+        background: transparent;
+    }
+
+    .items-container {
+        width: 100%;
+        padding: 20px 0 0;
     }
 
     .title {
@@ -48,6 +163,7 @@
     }
 
     .item {
+        width: 100%;
         justify-content: center;
         align-items: center;
         padding: 10px 0;
