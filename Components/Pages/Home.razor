@@ -14,51 +14,51 @@
                 case ChosenCrypto.Bitcoin:
                     <AdornmentContent Class="adornment">
                         <MudImage Src="img/BTC(BTC).svg" Alt="BTC"/>
-                        <AdornmentContent Style="display: flex; flex-direction: column; margin-left: 3px;">
-                            <MudText Style="color: white; height: 18px; font-size: 12px;">BTC</MudText>
-                            <MudText Class="btc" Style="height: 14px; font-size: 10px; border-radius: 4px;">BTC</MudText>
+                        <AdornmentContent Class="chosen-crypto-name-adornment">
+                            <MudText Class="chosen-crypto-name">BTC</MudText>
+                            <MudText Class="btc chosen-crypto-short-name">BTC</MudText>
                         </AdornmentContent>
-                        <MudText Style="margin-left:5px; color: rgba(255, 255, 255, 0.8);">▼</MudText>
+                        <MudText Class="dropdown-arrow">▼</MudText>
                     </AdornmentContent>
                     break;
                 case ChosenCrypto.USDT:
                     <AdornmentContent Class="adornment">
                         <MudImage Src="img/USDT(TRC20).svg" Alt="USDT"></MudImage>
-                        <AdornmentContent Style="display: flex; flex-direction: column; margin-left: 3px;">
-                            <MudText Style="color: white; height: 18px; font-size: 12px;">USDT</MudText>
-                            <MudText Class="usdt" Style="height: 14px; font-size: 10px; border-radius: 4px;">USDT</MudText>
+                        <AdornmentContent Class="chosen-crypto-name-adornment">
+                            <MudText Class="chosen-crypto-name">USDT</MudText>
+                            <MudText Class="usdt chosen-crypto-short-name">USDT</MudText>
                         </AdornmentContent>
-                        <MudText Style="margin-left:5px; color: rgba(255, 255, 255, 0.8);">▼</MudText>
+                        <MudText Class="dropdown-arrow">▼</MudText>
                     </AdornmentContent>
                     break;
                 case ChosenCrypto.Ethereum:
                     <AdornmentContent Class="adornment">
                         <MudImage Src="img/ETH(ERC20).svg" Style="height: 32px;" Alt="ETH"></MudImage>
-                        <AdornmentContent Style="display: flex; flex-direction: column; margin-left: 3px;">
-                            <MudText Style="color: white; height: 18px; font-size: 12px;">ETH</MudText>
-                            <MudText Class="eth" Style="height: 14px; font-size: 10px; border-radius: 4px;">ETH</MudText>
+                        <AdornmentContent Class="chosen-crypto-name-adornment">
+                            <MudText Class="chosen-crypto-name">ETH</MudText>
+                            <MudText Class="eth chosen-crypto-short-name">ETH</MudText>
                         </AdornmentContent>
-                        <MudText Style="margin-left:5px; color: rgba(255, 255, 255, 0.8);">▼</MudText>
+                        <MudText Class="dropdown-arrow">▼</MudText>
                     </AdornmentContent>
                     break;
                 case ChosenCrypto.Monero:
                     <AdornmentContent Class="adornment">
                         <MudImage Src="img/XMR(XMR).svg" Alt="XMR"></MudImage>
-                        <AdornmentContent Style="display: flex; flex-direction: column; margin-left: 3px;">
-                            <MudText Style="color: white; height: 18px; font-size: 12px;">XMR</MudText>
-                            <MudText Class="xmr" Style="height: 14px; font-size: 10px; border-radius: 4px;">XMR</MudText>
+                        <AdornmentContent Class="chosen-crypto-name-adornment">
+                            <MudText Class="chosen-crypto-name">XMR</MudText>
+                            <MudText Class="xmr chosen-crypto-short-name">XMR</MudText>
                         </AdornmentContent>
-                        <MudText Style="margin-left:5px; color: rgba(255, 255, 255, 0.8);">▼</MudText>
+                        <MudText Class="dropdown-arrow">▼</MudText>
                     </AdornmentContent>
                     break;
                 case ChosenCrypto.BNB:
                     <AdornmentContent Class="adornment">
                         <MudImage Src="img/BNB(BEP20).svg" Alt="BNB"></MudImage>
-                        <AdornmentContent Style="display: flex; flex-direction: column; margin-left: 3px;">
-                            <MudText Style="color: white; height: 18px; font-size: 12px;">BNB</MudText>
-                            <MudText Class="bnb" Style="height: 14px; font-size: 10px; border-radius: 4px;">BNB</MudText>
+                        <AdornmentContent Class="chosen-crypto-name-adornment">
+                            <MudText Class="chosen-crypto-name">BNB</MudText>
+                            <MudText Class="bnb chosen-crypto-short-name">BNB</MudText>
                         </AdornmentContent>
-                        <MudText Style="margin-left:5px; color: rgba(255, 255, 255, 0.8);">▼</MudText>
+                        <MudText Class="dropdown-arrow">▼</MudText>
                     </AdornmentContent>
                     break;
             }
@@ -134,6 +134,29 @@
 }
 
 <style>
+    .chosen-crypto-name-adornment {
+        display: flex;
+        flex-direction: column;
+        margin-left: 3px;
+    }
+
+    .chosen-crypto-name {
+        color: white;
+        height: 18px;
+        font-size: 12px;
+    }
+
+    .chosen-crypto-short-name {
+        height: 14px;
+        font-size: 10px;
+        border-radius: 4px;
+    }
+
+    .dropdown-arrow {
+        margin-left: 5px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
     .adornment {
         display:flex;
         align-items: center;
