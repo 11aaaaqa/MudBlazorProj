@@ -16,7 +16,7 @@
                     <MudImage Src="@chosenCrypto.ImgRoute" Alt="@chosenCrypto.ShortName"/>
                     <div class="chosen-crypto-name-adornment">
                         <MudText Class="chosen-crypto-name">@chosenCrypto.ShortName</MudText>
-                        <MudText Class="btc chosen-crypto-short-name">@chosenCrypto.ShortName</MudText>
+                        <MudText Style=@($"background-color: {GetCryptoColor(chosenCrypto.Name)}") Class="chosen-crypto-short-name">@chosenCrypto.ShortName</MudText>
                     </div>
                     <MudText Class="dropdown-arrow">▼</MudText>
                 </div>
@@ -35,7 +35,7 @@
             {
                 <MudButton OnClick="() => ChooseCryptoByName(crypto.Name)" Class="item">
                     <MudImage Src="@crypto.ImgRoute" Alt="@crypto.ShortName"></MudImage>
-                    <MudText Class="short-name btc">@crypto.ShortName</MudText>
+                    <MudText Style=@($"background-color: {GetCryptoColor(crypto.Name)}") Class="short-name">@crypto.ShortName</MudText>
                     <MudText Class="name">@crypto.Name</MudText>
                     <MudText Class="network">@crypto.Network</MudText>
                 </MudButton>
@@ -66,7 +66,25 @@
         new CryptoModel{Name = "Binance Coin", ShortName = "BNB", Network = "BEP20", ImgRoute = "img/BNB(BEP20).svg"}
     };
 
+    private readonly Dictionary<string, string> cryptoColors = new()
+    {
+        { "Bitcoin", "orange" },
+        { "Tether", "rgba(0, 190, 175, 1)" },
+        { "Ethereum", "rgba(0, 122, 255, 1)" },
+        { "Monero", "darkorange" },
+        { "Binance Coin", "rgba(255, 185, 24, 1)" }
+    };
+
     private List<CryptoModel> shownCryptoList;
+
+    string GetCryptoColor(string cryptoName)
+    {
+        cryptoColors.TryGetValue(cryptoName, out string? color);
+        if (color != null)
+            return color;
+
+        return string.Empty;
+    }
 
     void OpenModal()
     {
