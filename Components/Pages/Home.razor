@@ -2,90 +2,104 @@
 
 <MudContainer Class="page-container">
     <MudContainer Class="wrapper">
-        <MudInput T="int?" Placeholder="0" Class="input"></MudInput>
+        <MudNumericField HideSpinButtons="true" T="uint?" Placeholder="0" Class="input" Style="color: rgba(255,255,255,0.8);"></MudNumericField>
         <MudButton Class="open-modal-btn" OnClick="OpenModal" Ripple="false">
             @switch (chosenCrypto)
             {
                 case ChosenCrypto.None:
-                    <AdornmentContent Style="position: relative; top: 5px;">
-                        <MudText>&#x25BC;</MudText>
-                    </AdornmentContent> 
+                    <AdornmentContent Style="position: relative; top: 5px; margin-right: 45px;">
+                        <MudText Style="color: rgba(255, 255, 255, 0.8);">▼</MudText>
+                    </AdornmentContent>
                     break;
                 case ChosenCrypto.Bitcoin:
-                    <AdornmentContent Class="adornment">  
-                        <MudImage Src="img/BTC(BTC).svg" Alt="BTC" />
-                        <MudText Style="color: white; margin-left: 3px;">BTC</MudText>
-                    </AdornmentContent> 
+                    <AdornmentContent Class="adornment">
+                        <MudImage Src="img/BTC(BTC).svg" Alt="BTC"/>
+                        <AdornmentContent Style="display: flex; flex-direction: column; margin-left: 3px;">
+                            <MudText Style="color: white; height: 18px; font-size: 12px;">BTC</MudText>
+                            <MudText Class="btc" Style="height: 14px; font-size: 10px; border-radius: 4px;">BTC</MudText>
+                        </AdornmentContent>
+                    </AdornmentContent>
                     break;
                 case ChosenCrypto.USDT:
                     <AdornmentContent Class="adornment">
                         <MudImage Src="img/USDT(TRC20).svg" Alt="USDT"></MudImage>
-                        <MudText Style="color: white; margin-left: 3px;">USDT</MudText>
-                    </AdornmentContent>  
+                        <AdornmentContent Style="display: flex; flex-direction: column; margin-left: 3px;">
+                            <MudText Style="color: white; height: 18px; font-size: 12px;">USDT</MudText>
+                            <MudText Class="usdt" Style="height: 14px; font-size: 10px; border-radius: 4px;">USDT</MudText>
+                        </AdornmentContent>
+                    </AdornmentContent>
                     break;
                 case ChosenCrypto.Ethereum:
                     <AdornmentContent Class="adornment">
-                        <MudImage Src="img/ETH(ERC20).svg" Alt="ETH"></MudImage>
-                        <MudText Style="color: white; margin-left: 3px;">ETH</MudText>
-                    </AdornmentContent>  
+                        <MudImage Src="img/ETH(ERC20).svg" Style="height: 32px;" Alt="ETH"></MudImage>
+                        <AdornmentContent Style="display: flex; flex-direction: column; margin-left: 3px;">
+                            <MudText Style="color: white; height: 18px; font-size: 12px;">ETH</MudText>
+                            <MudText Class="eth" Style="height: 14px; font-size: 10px; border-radius: 4px;">ETH</MudText>
+                        </AdornmentContent>
+                    </AdornmentContent>
                     break;
                 case ChosenCrypto.Monero:
                     <AdornmentContent Class="adornment">
                         <MudImage Src="img/XMR(XMR).svg" Alt="XMR"></MudImage>
-                        <MudText Style="color: white; margin-left: 3px;">XMR</MudText>
-                    </AdornmentContent>  
+                        <AdornmentContent Style="display: flex; flex-direction: column; margin-left: 3px;">
+                            <MudText Style="color: white; height: 18px; font-size: 12px;">XMR</MudText>
+                            <MudText Class="xmr" Style="height: 14px; font-size: 10px; border-radius: 4px;">XMR</MudText>
+                        </AdornmentContent>
+                    </AdornmentContent>
                     break;
                 case ChosenCrypto.BNB:
                     <AdornmentContent Class="adornment">
                         <MudImage Src="img/BNB(BEP20).svg" Alt="BNB"></MudImage>
-                        <MudText Style="color: white; margin-left: 3px;">BNB</MudText>
-                    </AdornmentContent>  
+                        <AdornmentContent Style="display: flex; flex-direction: column; margin-left: 3px;">
+                            <MudText Style="color: white; height: 18px; font-size: 12px;">BNB</MudText>
+                            <MudText Class="bnb" Style="height: 14px; font-size: 10px; border-radius: 4px;">BNB</MudText>
+                        </AdornmentContent>
+                    </AdornmentContent>
                     break;
             }
         </MudButton>
-
-        @if (showModal)
-        {
-            <MudContainer Class="items-container">
-                <MudText Class="title">Popular</MudText>
-
-                <MudButton OnClick="() => ChooseCrypto(ChosenCrypto.Bitcoin)" Class="item">
-                    <MudImage Src="img/BTC(BTC).svg" Alt="BTC"></MudImage>
-                    <MudText Class="short-name btc">BTC</MudText>
-                    <MudText Class="name">Bitcoin</MudText>
-                    <MudText Class="network">NATIVE</MudText>
-                </MudButton>
-                
-                <MudButton OnClick="() => ChooseCrypto(ChosenCrypto.USDT)" Class="item">
-                    <MudImage Src="img/USDT(TRC20).svg" Alt="USDT"></MudImage>
-                    <MudText Class="short-name usdt">USDT</MudText>
-                    <MudText Class="name">Tether</MudText>
-                    <MudText Class="network">TRC20</MudText>
-                </MudButton>
-                
-                <MudButton OnClick="() => ChooseCrypto(ChosenCrypto.Ethereum)" Class="item">
-                    <MudImage Src="img/ETH(ERC20).svg" Alt="ETH"></MudImage>
-                    <MudText Class="short-name eth">ETH</MudText>
-                    <MudText Class="name">Ethereum</MudText>
-                    <MudText Class="network">ERC20</MudText>
-                </MudButton>
-                
-                <MudButton OnClick="() => ChooseCrypto(ChosenCrypto.Monero)" Class="item">
-                    <MudImage Src="img/XMR(XMR).svg" Alt="XMR"></MudImage>
-                    <MudText Class="short-name xmr">XMR</MudText>
-                    <MudText Class="name">Monero</MudText>
-                    <MudText Class="network">XMR</MudText>
-                </MudButton>
-                
-                <MudButton OnClick="() => ChooseCrypto(ChosenCrypto.BNB)" Class="item">
-                    <MudImage Src="img/BNB(BEP20).svg" Alt="BNB"></MudImage>
-                    <MudText Class="short-name bnb">BNB</MudText>
-                    <MudText Class="name">Binance Coin</MudText>
-                    <MudText Class="network">BEP20</MudText>
-                </MudButton>
-            </MudContainer>
-        }
     </MudContainer>
+    @if (showModal)
+    {
+        <MudContainer Class="items-container">
+            <MudText Class="title">Popular</MudText>
+
+            <MudButton OnClick="() => ChooseCrypto(ChosenCrypto.Bitcoin)" Class="item">
+                <MudImage Src="img/BTC(BTC).svg" Alt="BTC"></MudImage>
+                <MudText Class="short-name btc">BTC</MudText>
+                <MudText Class="name">Bitcoin</MudText>
+                <MudText Class="network">NATIVE</MudText>
+            </MudButton>
+                
+            <MudButton OnClick="() => ChooseCrypto(ChosenCrypto.USDT)" Class="item">
+                <MudImage Src="img/USDT(TRC20).svg" Alt="USDT"></MudImage>
+                <MudText Class="short-name usdt">USDT</MudText>
+                <MudText Class="name">Tether</MudText>
+                <MudText Class="network">TRC20</MudText>
+            </MudButton>
+                
+            <MudButton OnClick="() => ChooseCrypto(ChosenCrypto.Ethereum)" Class="item">
+                <MudImage Src="img/ETH(ERC20).svg" Alt="ETH"></MudImage>
+                <MudText Class="short-name eth">ETH</MudText>
+                <MudText Class="name">Ethereum</MudText>
+                <MudText Class="network">ERC20</MudText>
+            </MudButton>
+                
+            <MudButton OnClick="() => ChooseCrypto(ChosenCrypto.Monero)" Class="item">
+                <MudImage Src="img/XMR(XMR).svg" Alt="XMR"></MudImage>
+                <MudText Class="short-name xmr">XMR</MudText>
+                <MudText Class="name">Monero</MudText>
+                <MudText Class="network">XMR</MudText>
+            </MudButton>
+                
+            <MudButton OnClick="() => ChooseCrypto(ChosenCrypto.BNB)" Class="item">
+                <MudImage Src="img/BNB(BEP20).svg" Alt="BNB"></MudImage>
+                <MudText Class="short-name bnb">BNB</MudText>
+                <MudText Class="name">Binance Coin</MudText>
+                <MudText Class="network">BEP20</MudText>
+            </MudButton>
+        </MudContainer>
+    }
 </MudContainer>
 
 @code{
@@ -133,15 +147,15 @@
     }
 
     .wrapper {
+        display: flex;
         position: relative;
         width: 100%;
     }
 
-    .input {
+    .input{
         padding: 5px 70px 5px 0;
         width: 100%;
         color: white;
-        box-sizing: border-box;
     }
 
     .open-modal-btn {
@@ -154,7 +168,7 @@
 
     .items-container {
         width: 100%;
-        padding: 20px 0 0;
+        padding: 20px 20px 0 20px;
     }
 
     .title {
