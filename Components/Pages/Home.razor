@@ -26,13 +26,12 @@
     @if (showModal)
     {
         <MudContainer Class="items-container">
-            <div class="search-container">
-                <MudTextField T="string" Placeholder="Search" Style="color: rgba(255, 255, 255, 0.8);"></MudTextField>
-            </div>
+            <MudTextField T="string" @bind-Value="cryptoSearchValue" Placeholder="Search"Style="color: rgba(255, 255, 255, 0.8);"
+                          OnKeyUp="HandleCryptoSearch"></MudTextField>
 
             <MudText Class="title">Popular</MudText>
             
-            @foreach (var crypto in cryptoList)
+            @foreach (var crypto in shownCryptoList)
             {
                 <MudButton OnClick="() => ChooseCryptoByName(crypto.Name)" Class="item">
                     <MudImage Src="@crypto.ImgRoute" Alt="@crypto.ShortName"></MudImage>
@@ -55,6 +54,7 @@
         public string ImgRoute { get; set; }
     }
 
+    private string cryptoSearchValue = string.Empty;
     private CryptoModel? chosenCrypto;
     bool showModal = false;
     private List<CryptoModel> cryptoList = new()
@@ -66,8 +66,12 @@
         new CryptoModel{Name = "Binance Coin", ShortName = "BNB", Network = "BEP20", ImgRoute = "img/BNB(BEP20).svg"}
     };
 
+    private List<CryptoModel> shownCryptoList;
+
     void OpenModal()
     {
+        cryptoSearchValue = string.Empty;
+        shownCryptoList = cryptoList;
         showModal = !showModal;
     }
 
@@ -76,18 +80,30 @@
         chosenCrypto = cryptoList.Single(x => x.Name == cryptoName);
         showModal = false;
     }
+
+    void HandleCryptoSearch(KeyboardEventArgs args)
+    {
+        if(args.Key == "Enter")
+            SearchCrypto();
+    }
+
+    void SearchCrypto()
+    {
+        cryptoSearchValue = cryptoSearchValue.ToLower();
+        if (!string.IsNullOrEmpty(cryptoSearchValue))
+        {
+            shownCryptoList = cryptoList.Where(x => x.Name.ToLower().Contains(cryptoSearchValue) 
+                || x.ShortName.ToLower().Contains(cryptoSearchValue) || x.Network.ToLower().Contains(cryptoSearchValue))
+                .ToList();
+        }
+        else
+        {
+            shownCryptoList = cryptoList;
+        }
+    }
 }
 
 <style>
-    .search-container {
-        
-    }
-
-    .search-input {
-        color: rgba(255, 255, 255, 0.8);
-        width: 100%;
-    }
-
     .chosen-crypto-name-adornment {
         display: flex;
         flex-direction: column;
